@@ -17,7 +17,7 @@ public class TexFactory {
     public TexFactory(String fileName) throws FileNotFoundException {
 
 
-        file = new File(SharedConstans.defaultPath + SharedConstans.sep + "code2pdf.tex");
+        file = new File(SharedConstans.defaultPath + SharedConstans.sep + "codetopdf.tex");
         fileOutputStream = new FileOutputStream(file);
 
         directoryList = new DirectoryList(fileName);
@@ -33,6 +33,7 @@ public class TexFactory {
             printStream.println(Base.text);
 
             for(String code : codePath) {
+                if(!(code.contains("R.java")))
                 printStream.println("\\lstinputlisting{"+code+"}");
             }
 
