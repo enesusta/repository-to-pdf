@@ -32,10 +32,10 @@ public class TexFactory {
 
             printStream.println(Base.text);
 
-            for(String code : codePath) {
+            for(String code : codePath) 
                 if(!(code.contains("R.java")))
-                printStream.println("\\lstinputlisting{"+code+"}");
-            }
+                    printStream.println("\\lstinputlisting{"+code+"}");
+            
 
             printStream.println("\\end{document}");
 
@@ -45,6 +45,10 @@ public class TexFactory {
         }
 
 
+    }
+
+    public void show() {
+        codePath.stream().forEach(System.out::println);
     }
 
 

@@ -11,6 +11,7 @@ public class Frame extends JFrame {
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(Color.WHITE);
 
         EventQueue.invokeLater(new Runnable() {
             @Override

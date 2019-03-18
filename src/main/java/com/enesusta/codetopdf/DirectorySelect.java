@@ -35,13 +35,35 @@ public class DirectorySelect extends Application {
 
         TexFactory texFactory = new TexFactory(selectedDirectory.getAbsolutePath());
         texFactory.createPDF();
-
+        texFactory.show();
 
         VBox vBox = new VBox();
         Scene scene = new Scene(vBox, 960, 600);
         stage.setScene(scene);
         //primaryStage.show();
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
