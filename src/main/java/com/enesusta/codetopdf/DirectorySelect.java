@@ -1,13 +1,11 @@
 package com.enesusta.codetopdf;
 
+import com.enesusta.codetopdf.itext.MergeDocument;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -16,6 +14,7 @@ public class DirectorySelect extends Application {
 
     private Stage stage;
     private DirectoryChooser directoryChooser;
+    private MergeDocument mergeDocument;
 
     public DirectorySelect() {
 
@@ -23,6 +22,7 @@ public class DirectorySelect extends Application {
         directoryChooser = new DirectoryChooser();
 
 //        directoryChooser.setInitialDirectory(new File("src"));
+        mergeDocument = new MergeDocument();
     }
 
     @Override
@@ -34,8 +34,11 @@ public class DirectorySelect extends Application {
         File selectedDirectory = directoryChooser.showDialog(stage);
 
         TexFactory texFactory = new TexFactory(selectedDirectory.getAbsolutePath());
-        texFactory.createPDF();
-        texFactory.show();
+        boolean done = texFactory.isDone();
+
+        if(done)
+            System.exit(0);
+
 
         VBox vBox = new VBox();
         Scene scene = new Scene(vBox, 960, 600);
@@ -46,24 +49,6 @@ public class DirectorySelect extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
