@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -50,27 +51,41 @@ public class KeywordManager {
 
         List<Chunk> chunkList = new ArrayList<>();
         List<String> words = new ArrayList<>();
-
-        for(int i = 0 ; i < source.length() ; i+=57)
-            words.add(source.substring(i,i+57));
-
+        List<String> splitWords = new ArrayList<>();
 
         Font red = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.RED);
         Font white = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.BLACK);
 
+
+        String split[] = source.split(System.lineSeparator());
+
+        for (String splitWordsTemp : split)
+            words.add(splitWordsTemp);
+
+
         for (String iter : words) {
 
-            if (containsString(iter, readKeywords())) {
+            String splitTmp[] = iter.split(" ");
 
-                Chunk redKeyword = new Chunk(iter,red);
-                chunkList.add(redKeyword);
+            for (String splitT : splitTmp) {
 
-            } else {
+                System.out.println("okunan string : " + splitT);
 
-                Chunk whiteKeyword = new Chunk(iter,white);
-                chunkList.add(whiteKeyword);
+                if (containsString(splitT, readKeywords())) {
+
+                    if (!splitT.trim().isEmpty()) {
+                        Chunk redKeyword = new Chunk(splitT, red);
+                        chunkList.add(redKeyword);
+                    }
+
+                } else {
+
+                    if (!splitT.trim().isEmpty()) {
+                        Chunk whiteKeyword = new Chunk(splitT, white);
+                        chunkList.add(whiteKeyword);
+                    }
+                }
             }
-
         }
 
         return chunkList;
@@ -82,9 +97,7 @@ public class KeywordManager {
         return list.contains(testString);
     }
 
-    public static void main(String [] args) {
-
-
+    public static void main(String[] args) {
 
 
     }

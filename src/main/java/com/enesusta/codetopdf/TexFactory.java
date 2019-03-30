@@ -25,7 +25,7 @@ public class TexFactory {
 
 
         //file = new File(SharedConstans.defaultPath + SharedConstans.sep + "codetopdf.tex");
-        fileOutputStream = new FileOutputStream(new File("/home/phield/itext2.pdf"));
+        fileOutputStream = new FileOutputStream(new File("/home/phield/itext3.pdf"));
 
         directoryList = new DirectoryList(fileName);
         codePath = directoryList.getAbsolutePaths(fileName);

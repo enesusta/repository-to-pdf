@@ -27,6 +27,7 @@ public class JavaSourceReader {
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
                 stringBuilder.append(System.lineSeparator());
+                stringBuilder.append(System.lineSeparator());
             }
 
             tmp = stringBuilder.toString();
