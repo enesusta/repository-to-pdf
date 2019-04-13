@@ -20,17 +20,19 @@ public class TexFactory {
     private List<String> codePath;
     private Document document;
     private Colorized colorizedSource;
+    private StringBuilder bigString;
 
     public TexFactory(String fileName) throws FileNotFoundException {
 
 
         //file = new File(SharedConstans.defaultPath + SharedConstans.sep + "codetopdf.tex");
-        fileOutputStream = new FileOutputStream(new File("/home/phield/itext3.pdf"));
+        fileOutputStream = new FileOutputStream(new File(System.getProperty("user.home")+"/a.tex"));
 
         directoryList = new DirectoryList(fileName);
         codePath = directoryList.getAbsolutePaths(fileName);
         document = new Document();
         colorizedSource = new Colorized();
+        bigString = new StringBuilder();
 
     }
 
@@ -62,43 +64,36 @@ public class TexFactory {
     }
 
 
-    public boolean isDone() {
+    public void isDone() {
 
         String pathBase = "/home/phield/Music/";
-        StringBuilder bigString = new StringBuilder();
+        bigString = new StringBuilder();
         Document temp = new Document();
         ColumnText columnText;
 
-        try {
-
+/*
             PdfWriter writer = PdfWriter.getInstance(temp, fileOutputStream);
             temp.open();
             columnText = new ColumnText(writer.getDirectContent());
-
+*/
             for (String code : codePath) {
 
                 JavaSourceReader sourceReader = new JavaSourceReader(new File(code));
                 bigString.append(sourceReader.getSource());
             }
 
-
+/*
             temp.add(new Chunk(""));
             colorizedSource.addHighlightedDocumentToDocument(temp,bigString.toString());
             colorizedSource.addHighlightedColumnTextToDocument(columnText,bigString.toString());
 
 
             temp.close();
+*/
+    }
 
-
-
-        } catch (DocumentException e) {
-            e.printStackTrace();
-            return false;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return true;
+    public String getBigString() {
+        return bigString.toString();
     }
 
 

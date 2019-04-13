@@ -27,7 +27,7 @@ public class JavaSourceReader {
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
                 stringBuilder.append(System.lineSeparator());
-                stringBuilder.append(System.lineSeparator());
+//                stringBuilder.append(System.lineSeparator());
             }
 
             tmp = stringBuilder.toString();
@@ -43,7 +43,7 @@ public class JavaSourceReader {
 
     public static void main(String[] args) {
 
-        System.out.println(new JavaSourceReader(new File("/home/phield")).getSource());
+        System.out.println(new JavaSourceReader(new File(System.getProperty("user.home")+"/texput.log")).getSource());
 
 
     }
