@@ -1,7 +1,6 @@
 #
 # Standard Maven .gitignore
 #
-*/*.tex
 *.log
 *.aux
 *.pdf
