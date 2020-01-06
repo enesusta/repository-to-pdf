@@ -4,6 +4,12 @@ create() {
     xelatex $1
 }
 
+clean() {
+    rm *.log
+    rm *.aux
+    rm *.tex
+}	
+
 printf "%s\n\n" "$(cat <src/ascii)"
 
 languages='Java JavaScript Bash C'
@@ -30,9 +36,8 @@ case $choice in
         do
             if [ -f "$i" ]; then
                 printf "Filename: %s\n" "${i##*/}"
-                #printf "Path: %s\n" "`readlink -f $i`"
-				printf "Filename is: %s\n\n" "${i##*/}"
-                printf "%s\n %s\n %s\n" "\\begin{lstlisting}[,caption={}]" "$(<$i)" "\\end{lstlisting}" >> "$name.tex"
+				printf "\n %s \n" "\\pagebreak" >> "$name.tex"
+                printf "%s %s\n %s\n %s\n" "\\begin{lstlisting}[,caption={" "${i##*/}}]" "$(<$i)" "\\end{lstlisting}" >> "$name.tex"
             fi
         done
         echo "\\end{document}" >> "$name.tex"
@@ -44,12 +49,13 @@ case $choice in
         do
             if [ -f "$i" ]; then
                 printf "Filename: %s\n" "${i##*/}"
-                #printf "Path: %s\n" "`readlink -f $i`"
-                printf "%s\n %s\n %s\n" "\\begin{lstlisting}[,caption={}]" "$(<$i)" "\\end{lstlisting}" >> "$name.tex"
+		printf "\n %s \n" "\\pagebreak" >> "$name.tex"
+                printf "%s %s\n %s\n %s\n" "\\begin{lstlisting}[,caption={" "${i##*/}}]" "$(<$i)" "\\end{lstlisting}" >> "$name.tex"
             fi
         done
         echo "\\end{document}" >> "$name.tex"
         create "$name.tex"
+	clean
     ;;
     JavaScript)
         cat < src/javascript.tex > "$name.tex"
@@ -57,7 +63,6 @@ case $choice in
         do
             if [ -f "$i" ]; then
                 printf "Filename: %s\n" "${i##*/}"
-                #printf "Path: %s\n" "`readlink -f $i`"
 				printf "\n %s \n" "\\pagebreak" >> "$name.tex"
                 printf "%s %s\n %s\n %s\n" "\\begin{lstlisting}[,caption={" "${i##*/}}]" "$(<$i)" "\\end{lstlisting}" >> "$name.tex"
             fi
@@ -72,8 +77,8 @@ case $choice in
         do
             if [ -f "$i" ]; then
                 printf "Filename: %s\n" "${i##*/}"
-                #printf "Path: %s\n" "`readlink -f $i`"
-                printf "%s\n %s\n %s\n" "\\begin{lstlisting}[,caption={}]" "$(<$i)" "\\end{lstlisting}" >> "$name.tex"
+				printf "\n %s \n" "\\pagebreak" >> "$name.tex"
+                printf "%s %s\n %s\n %s\n" "\\begin{lstlisting}[,caption={" "${i##*/}}]" "$(<$i)" "\\end{lstlisting}" >> "$name.tex"
             fi
         done
         
